@@ -16,7 +16,7 @@ const LeftSidebar = () => {
       <div className="flex flex-col gap-3">
         <Button
           asChild
-          className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none"
+          className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-6 shadow-none"
         >
           <Link href={ROUTES.SIGN_IN}>
             <Image
@@ -31,7 +31,7 @@ const LeftSidebar = () => {
         </Button>
         <Button
           asChild
-          className="small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg border px-4 py-3 shadow-none"
+          className="small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg border px-4 py-6 shadow-none"
         >
           <Link href={ROUTES.SIGN_UP}>
             <Image
