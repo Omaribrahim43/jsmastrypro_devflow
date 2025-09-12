@@ -1,5 +1,4 @@
 import { model, models, Schema, Types } from "mongoose";
-import { string } from "zod";
 
 export interface IAccount {
   userId: Types.ObjectId;
@@ -13,11 +12,11 @@ export interface IAccount {
 const AccountSchema = new Schema(
   {
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    name: { type: string, required: true },
-    image: { type: string },
-    password: { type: string },
-    provider: { type: string, required: true },
-    providerAccountId: { type: string, required: true },
+    name: { type: String, required: true },
+    image: { type: String },
+    password: { type: String },
+    provider: { type: String, required: true },
+    providerAccountId: { type: String, required: true },
   },
   { timestamps: true }
 );
