@@ -50,7 +50,7 @@ export const SignUpSchema = z.object({
     }),
 });
 
-export const AskQuuestionSchema = z.object({
+export const AskQuestionSchema = z.object({
   title: z
     .string()
     .min(5, { message: "title is required." })
