@@ -2,7 +2,7 @@
 
 import { ReloadIcon } from "@radix-ui/react-icons";
 
-import React, { useRef, useState } from "react";
+import { useRef, useState, useTransition } from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import {
@@ -18,9 +18,11 @@ import z from "zod";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import Editor from "../editor";
 import { MDXEditorMethods } from "@mdxeditor/editor";
+import { createAnswer } from "@/lib/actions/answer.action";
+import { toast } from "sonner";
 
-const AnswerForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+const AnswerForm = ({ questionId }: { questionId: string }) => {
+  const [isAnswering, startAnsweringTransition] = useTransition();
   const [isAISubmitting, setIsAISubmitting] = useState(false);
 
   const editorRef = useRef<MDXEditorMethods>(null);
@@ -33,7 +35,22 @@ const AnswerForm = () => {
   });
 
   const handleSubmit = async (values: z.infer<typeof AnswerSchema>) => {
-    console.log(values);
+    startAnsweringTransition(async () => {
+      const result = await createAnswer({
+        questionId,
+        content: values.content,
+      });
+
+      if (result.success) {
+        form.reset();
+
+        toast.success("Success", {
+          description: "Your answer has been posted successfully",
+        });
+      } else {
+        toast.error("Error", { description: result.error?.message });
+      }
+    });
   };
   return (
     <div>
@@ -88,7 +105,7 @@ const AnswerForm = () => {
 
           <div className="flex justify-end">
             <Button type="submit" className="primary-gradient w-fit">
-              {isSubmitting ? (
+              {isAnswering ? (
                 <>
                   <ReloadIcon className="mr-2 size-4 animate-spin" />
                   Posting...
