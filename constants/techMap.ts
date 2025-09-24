@@ -1,3 +1,5 @@
+import { auth } from "@/auth";
+
 export const techMap: { [key: string]: string } = {
   javascript: "devicon-javascript-plain",
   js: "devicon-javascript-plain",
@@ -205,4 +207,112 @@ export const techMap: { [key: string]: string } = {
   docsify: "devicon-docsify-plain",
   chakraui: "devicon-chakraui-plain",
   shadcn: "devicon-shadcn-plain",
+
+  // General Development Concepts
+  frontend: "devicon-html5-plain", // fallback for frontend
+  backend: "devicon-nodejs-plain", // backend generic
+  fullstack: "devicon-javascript-plain",
+  api: "devicon-express-plain",
+  restapi: "devicon-express-plain",
+  graphqlapi: "devicon-graphql-plain",
+  microservices: "devicon-docker-plain",
+  monolith: "devicon-nodejs-plain",
+  architecture: "devicon-architecture-plain", // placeholder/fallback
+
+  // File Structure & Tools
+  filesystem: "devicon-linux-plain",
+  file: "devicon-plain",
+  folder: "devicon-plain",
+  json: "devicon-json-plain",
+  yaml: "devicon-plain",
+  xml: "devicon-html5-plain",
+  markdown: "devicon-markdown-original",
+  env: "devicon-plain",
+  config: "devicon-plain",
+  packagejson: "devicon-npm-original",
+  npm: "devicon-npm-original",
+  yarn: "devicon-yarn-plain",
+  pnpm: "devicon-pnpm-plain",
+
+  // Build Tools & Project Setup
+  monorepo: "devicon-lerna-plain", // if no lerna icon, fallback
+  turborepo: "devicon-turborepo-plain", // fallback custom icon
+  nx: "devicon-nx-plain", // fallback/custom
+  vitepress: "devicon-vite-plain",
+  astro: "devicon-astro-plain",
+  remix: "devicon-remix-plain",
+  blitz: "devicon-blitz-plain",
+
+  // Testing / QA
+  testing: "devicon-jest-plain",
+  unittest: "devicon-jest-plain",
+  integrationtest: "devicon-mocha-plain",
+  e2e: "devicon-cypress-plain",
+  qa: "devicon-selenium-plain",
+
+  // Cloud & Hosting
+  netlify: "devicon-netlify-plain",
+  vercel: "devicon-vercel-original",
+  digitalocean: "devicon-digitalocean-plain",
+  linode: "devicon-linode-plain",
+  render: "devicon-render-plain",
+  cloudflare: "devicon-cloudflare-plain",
+  supabase: "devicon-supabase-plain",
+  planetscale: "devicon-planetscale-plain",
+
+  // Mobile & Cross-Platform
+  reactnative: "devicon-react-original",
+  flutter: "devicon-flutter-plain",
+  capacitor: "devicon-capacitor-plain",
+  cordova: "devicon-cordova-plain",
+  ionic: "devicon-ionic-original",
+
+  // CMS & Platforms
+  wordpress: "devicon-wordpress-plain",
+  drupal: "devicon-drupal-plain",
+  joomla: "devicon-joomla-plain",
+  shopify: "devicon-shopify-plain",
+  magento: "devicon-magento-plain",
+  wix: "devicon-wix-plain",
+  squarespace: "devicon-squarespace-plain",
+
+  // Project Management & Collaboration
+  confluence: "devicon-confluence-plain",
+  slack: "devicon-slack-plain",
+  discord: "devicon-discord-plain",
+  teams: "devicon-teams-plain",
+  zoom: "devicon-zoom-plain",
+
+  // Security
+  auth: "devicon-oauth-plain", // fallback
+  oauth: "devicon-oauth-plain",
+  jwt: "devicon-jwt-plain",
+  keycloak: "devicon-keycloak-plain",
+  cybersecurity: "devicon-security-plain", // fallback/custom
+
+  // Data Science & Big Data
+  bigdata: "devicon-apache-plain",
+  spark: "devicon-apachespark-plain",
+  hadoop: "devicon-hadoop-plain",
+  airflow: "devicon-apacheairflow-plain",
+  kafka: "devicon-apachekafka-plain",
+  databricks: "devicon-databricks-plain",
+
+  // DevOps & Infra
+  terraform: "devicon-terraform-plain",
+  ansible: "devicon-ansible-plain",
+  chef: "devicon-chef-plain",
+  puppet: "devicon-puppet-plain",
+  consul: "devicon-consul-plain",
+  vault: "devicon-vault-plain",
+  prometheus: "devicon-prometheus-plain",
+  grafana: "devicon-grafana-plain",
+
+  // Emerging Tech
+  blockchain: "devicon-solidity-plain",
+  web3: "devicon-web3-plain",
+  ai: "devicon-tensorflow-original",
+  ml: "devicon-scikitlearn-plain",
+  deeplearning: "devicon-pytorch-original",
+  nlp: "devicon-spacy-plain",
 };
