@@ -66,7 +66,9 @@ const LeftSidebar = async () => {
                   height={20}
                   className="invert-colors lg:hidden"
                 />
-                <span>Sign Up</span>
+                <span className="primary-text-gradient max-lg:hidden">
+                  Sign Up
+                </span>
               </Link>
             </Button>
           </>
