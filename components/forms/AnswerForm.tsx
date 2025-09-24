@@ -16,12 +16,16 @@ import { AnswerSchema } from "@/lib/validations";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
-import Editor from "../editor";
 import { MDXEditorMethods } from "@mdxeditor/editor";
 import { createAnswer } from "@/lib/actions/answer.action";
 import { toast } from "sonner";
 import { useSession } from "next-auth/react";
 import { api } from "@/lib/api";
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(() => import("@/components/editor"), {
+  ssr: false,
+});
 
 interface Props {
   questionId: string;
@@ -75,10 +79,13 @@ const AnswerForm = ({ questionId, questionTitle, questionContent }: Props) => {
 
     setIsAISubmitting(true);
 
+    const userAnswer = editorRef.current?.getMarkdown();
+
     try {
       const { success, data, error } = await api.ai.getAnswer(
         questionTitle,
-        questionContent
+        questionContent,
+        userAnswer
       );
 
       if (!success) {
