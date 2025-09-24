@@ -48,7 +48,7 @@ export async function createAnswer(
 
     if (!newAnswer) throw new Error("Failed to create answer");
 
-    question.answer += 1;
+    question.answers += 1;
     await question.save({ session });
 
     await session.commitTransaction();
