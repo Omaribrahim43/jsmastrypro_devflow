@@ -1,17 +1,21 @@
 "use server";
 
+import mongoose from "mongoose";
+import { revalidatePath } from "next/cache";
+import { after } from "next/server";
+
+import ROUTES from "@/constants/routes";
+import { Question, Vote } from "@/database";
 import Answer, { IAnswerDoc } from "@/database/answer.model";
-import action from "@/lib/handlers/action";
+
+import action from "../handlers/action";
+import handleError from "../handlers/error";
 import {
   AnswerServerSchema,
   DeleteAnswerSchema,
   GetAnswersSchema,
-} from "@/lib/validations";
-import handleError from "@/lib/handlers/error";
-import mongoose from "mongoose";
-import { Question, Vote } from "@/database";
-import { revalidatePath } from "next/cache";
-import ROUTES from "@/constants/routes";
+} from "../validations";
+import { createInteraction } from "./interaction.action";
 
 export async function createAnswer(
   params: CreateAnswerParams
@@ -33,8 +37,8 @@ export async function createAnswer(
   session.startTransaction();
 
   try {
+    // check if the question exists
     const question = await Question.findById(questionId);
-
     if (!question) throw new Error("Question not found");
 
     const [newAnswer] = await Answer.create(
@@ -45,15 +49,24 @@ export async function createAnswer(
           content,
         },
       ],
-      {
-        session,
-      }
+      { session }
     );
 
     if (!newAnswer) throw new Error("Failed to create the answer");
 
+    // update the question answers count
     question.answers += 1;
     await question.save({ session });
+
+    // log the interaction
+    after(async () => {
+      await createInteraction({
+        action: "post",
+        actionId: newAnswer._id.toString(),
+        actionTarget: "answer",
+        authorId: userId as string,
+      });
+    });
 
     await session.commitTransaction();
 
@@ -165,6 +178,16 @@ export async function deleteAnswer(
 
     // delete the answer
     await Answer.findByIdAndDelete(answerId);
+
+    // log the interaction
+    after(async () => {
+      await createInteraction({
+        action: "delete",
+        actionId: answerId,
+        actionTarget: "answer",
+        authorId: user?.id as string,
+      });
+    });
 
     revalidatePath(`/profile/${user?.id}`);
 
