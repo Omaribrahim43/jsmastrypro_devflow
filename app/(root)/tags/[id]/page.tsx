@@ -1,4 +1,4 @@
-import QuestionCard from "@/components/cards/QuestionsCard";
+import QuestionCard from "@/components/cards/QuestionCard";
 import DataRenderer from "@/components/DataRenderer";
 import Pagination from "@/components/Pagination";
 import LocalSearch from "@/components/search/LocalSearch";

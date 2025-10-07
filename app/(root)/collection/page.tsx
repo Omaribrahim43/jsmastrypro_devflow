@@ -1,4 +1,4 @@
-import QuestionsCard from "@/components/cards/QuestionsCard";
+import QuestionsCard from "@/components/cards/QuestionCard";
 import DataRenderer from "@/components/DataRenderer";
 import CommonFilter from "@/components/filters/CommonFilter";
 import Pagination from "@/components/Pagination";
